@@ -32,7 +32,7 @@ function Index() {
     window.setTimeout(() => {
       setOpened(true);
       window.scrollTo({ top: 0, behavior: "instant" });
-    }, 1700);
+    }, 1480);
   };
 
   return (
