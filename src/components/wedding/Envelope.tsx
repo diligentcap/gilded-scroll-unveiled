@@ -24,21 +24,25 @@ export function Envelope({ opening, onOpen }: { opening: boolean; onOpen: () => 
         <span>Ayushi</span><i>&amp;</i><span>Abhishek</span>
       </motion.div>
       <motion.div
+        className="envelope-back"
+        animate={opening ? { y: [0, 0, 58], opacity: [1, 1, 0] } : { y: 0, opacity: 1 }}
+        transition={{ duration: reduced ? 0.01 : 1.85, times: [0, 0.62, 1], ease: [0.22, 1, 0.36, 1] }}
+      />
+      <motion.div
+        className="envelope-flap"
+        animate={opening ? { rotateX: [0, -92, -178], y: [0, 0, 58], opacity: [1, 1, 0], zIndex: [5, 1, 1] } : { rotateX: 0, y: 0, opacity: 1, zIndex: 5 }}
+        transition={{ duration: reduced ? 0.01 : 1.85, delay: reduced ? 0 : 0.3, times: [0, 0.46, 1], ease: [0.22, 1, 0.36, 1] }}
+      />
+      <motion.div
         className="envelope-shell"
-        animate={opening ? { y: 58, opacity: 0 } : { y: 0, opacity: 1 }}
-        transition={{ duration: reduced ? 0.01 : 0.85, delay: reduced ? 0 : 1.12, ease: [0.22, 1, 0.36, 1] }}
+        animate={opening ? { y: [0, 0, 58], opacity: [1, 1, 0] } : { y: 0, opacity: 1 }}
+        transition={{ duration: reduced ? 0.01 : 1.85, times: [0, 0.62, 1], ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="envelope-back" />
-        <motion.div
-          className="envelope-flap"
-          animate={opening ? { rotateX: -178 } : { rotateX: 0 }}
-          transition={{ duration, delay: reduced ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
-        />
         <div className="envelope-front-left" />
         <div className="envelope-front-right" />
         <div className="envelope-front-bottom" />
-        <WaxSeal opening={opening} />
       </motion.div>
+      <WaxSeal opening={opening} />
     </motion.button>
   );
 }
