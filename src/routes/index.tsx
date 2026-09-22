@@ -1,24 +1,44 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { EnvelopeIntro } from "@/components/wedding/EnvelopeIntro";
+import { InvitationReveal } from "@/components/wedding/InvitationReveal";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Ayushi & Abhishek — Wedding Invitation" },
+      { name: "description", content: "Open the wedding invitation of Ayushi and Abhishek, celebrating in Dehradun on 11 December 2026." },
+      { property: "og:title", content: "Ayushi & Abhishek — Wedding Invitation" },
+      { property: "og:description", content: "Together with their families, Ayushi and Abhishek invite you to celebrate their wedding." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [opening, setOpening] = useState(false);
+  const [opened, setOpened] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = opened ? "" : "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, [opened]);
+
+  const openInvitation = () => {
+    if (opening) return;
+    setOpening(true);
+    window.setTimeout(() => {
+      setOpened(true);
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }, 1700);
+  };
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="wedding-experience">
+      <EnvelopeIntro opening={opening} onOpen={openInvitation} />
+      {opening && <InvitationReveal visible={opened} />}
     </div>
   );
 }
