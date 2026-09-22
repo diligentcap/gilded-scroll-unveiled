@@ -13,7 +13,7 @@ export function InvitationReveal({ visible }: { visible: boolean }) {
     <motion.main
       id="invitation"
       className="invitation-page"
-      initial={false}
+      initial={{ opacity: 0, y: reduced ? 0 : 36, scale: reduced ? 1 : 0.985 }}
       animate={visible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: reduced ? 0 : 36, scale: reduced ? 1 : 0.985 }}
       transition={{ duration: reduced ? 0.01 : 0.9, delay: visible && !reduced ? 0.08 : 0, ease: [0.22, 1, 0.36, 1] }}
       aria-hidden={!visible}

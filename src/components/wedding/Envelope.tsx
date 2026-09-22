@@ -3,7 +3,6 @@ import { WaxSeal } from "./WaxSeal";
 
 export function Envelope({ opening, onOpen }: { opening: boolean; onOpen: () => void }) {
   const reduced = useReducedMotion();
-  const duration = reduced ? 0.01 : 1.05;
 
   return (
     <motion.button
