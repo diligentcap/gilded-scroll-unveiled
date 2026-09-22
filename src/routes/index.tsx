@@ -20,19 +20,21 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [opening, setOpening] = useState(false);
   const [opened, setOpened] = useState(false);
+  const [transitionComplete, setTransitionComplete] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = opened ? "" : "hidden";
+    document.body.style.overflow = transitionComplete ? "" : "hidden";
     return () => { document.body.style.overflow = ""; };
-  }, [opened]);
+  }, [transitionComplete]);
 
   const openInvitation = () => {
     if (opening) return;
     setOpening(true);
+    window.setTimeout(() => setOpened(true), 900);
     window.setTimeout(() => {
-      setOpened(true);
+      setTransitionComplete(true);
       window.scrollTo({ top: 0, behavior: "instant" });
-    }, 1040);
+    }, 1900);
   };
 
   return (

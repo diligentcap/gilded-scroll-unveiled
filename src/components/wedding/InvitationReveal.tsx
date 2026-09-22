@@ -1,4 +1,3 @@
-import { motion, useReducedMotion } from "framer-motion";
 import { CouplePhotos } from "./CouplePhotos";
 import { EventDetails } from "./EventDetails";
 import { FloralDecorations } from "./FloralDecorations";
@@ -8,14 +7,10 @@ import { InvitationMessage } from "./InvitationMessage";
 import { WeddingCard } from "./WeddingCard";
 
 export function InvitationReveal({ visible }: { visible: boolean }) {
-  const reduced = useReducedMotion();
   return (
-    <motion.main
+    <main
       id="invitation"
       className="invitation-page"
-      initial={{ opacity: 0, y: reduced ? 0 : 36, scale: reduced ? 1 : 0.985 }}
-      animate={visible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: reduced ? 0 : 36, scale: reduced ? 1 : 0.985 }}
-      transition={{ duration: reduced ? 0.01 : 0.9, delay: 0, ease: [0.22, 1, 0.36, 1] }}
       aria-hidden={!visible}
     >
       <div className="paper-sheet">
@@ -36,6 +31,6 @@ export function InvitationReveal({ visible }: { visible: boolean }) {
         </section>
         <Footer />
       </div>
-    </motion.main>
+    </main>
   );
 }
