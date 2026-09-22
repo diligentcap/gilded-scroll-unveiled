@@ -7,8 +7,9 @@ export function EnvelopeIntro({ opening, onOpen }: { opening: boolean; onOpen: (
     <motion.section
       aria-label="Closed wedding invitation"
       className="envelope-intro"
-      animate={opening ? { opacity: 0, visibility: "hidden" } : { opacity: 1, visibility: "visible" }}
-      transition={{ duration: reduced ? 0.01 : 0.72, delay: opening && !reduced ? 1.72 : 0, ease: [0.22, 1, 0.36, 1] }}
+      animate={opening ? { opacity: 0 } : { opacity: 1 }}
+      transition={{ duration: reduced ? 0.01 : 0.72, delay: opening && !reduced ? 1.45 : 0, ease: [0.22, 1, 0.36, 1] }}
+      style={{ pointerEvents: opening ? "none" : "auto" }}
     >
       <div className="envelope-wrap">
         <Envelope opening={opening} onOpen={onOpen} />
