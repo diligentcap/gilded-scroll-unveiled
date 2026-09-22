@@ -11,8 +11,8 @@ export function Envelope({ opening, onOpen }: { opening: boolean; onOpen: () => 
       aria-label="Open Ayushi and Abhishek's wedding invitation"
       onClick={onOpen}
       disabled={opening}
-      animate={opening ? { scale: 1.025, y: 70, opacity: 0 } : { scale: 1, y: [0, -4, 0] }}
-      transition={opening ? { duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] } : { duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      animate={opening ? { scale: 1.025, y: 70, opacity: 0 } : { scale: 1, y: 0 }}
+      transition={{ duration: opening ? 1 : 0.3, delay: opening ? 1 : 0, ease: [0.22, 1, 0.36, 1] }}
       className="envelope-stage"
     >
       <div className="invitation-slip" aria-hidden="true">
